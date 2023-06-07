@@ -94,9 +94,9 @@ module.exports = class Scanner {
         break;
       case "/":
         if (this.match("/")) {
-          while (this.peek() !== "\n" && !this.isAtEnd()) {
-            this.advance();
-          }
+          this.comment();
+        } else if (this.match("*")) {
+          this.multiLineComment();
         } else {
           this.addToken(TokenType.SLASH);
         }
@@ -147,7 +147,7 @@ module.exports = class Scanner {
   peekNext() {
     if (this.current + 1 >= this.source.length) return "\n";
 
-    return this.source[current + 1];
+    return this.source[this.current + 1];
   }
 
   addToken(type, literal = null) {
@@ -219,5 +219,23 @@ module.exports = class Scanner {
 
   isAlphaNumeric(char) {
     return this.isAlpha(char) || this.isDigit(char);
+  }
+
+  comment() {
+    while (this.peek() !== "\n" && !this.isAtEnd()) {
+      this.advance();
+    }
+  }
+
+  multiLineComment() {
+    let nextChar = this.peek();
+    while (nextChar !== "*" && this.peekNext() !== "/" && !this.isAtEnd()) {
+      if (nextChar === "\n") ++this.line;
+      this.advance();
+      nextChar = this.peek();
+    }
+
+    this.advance();
+    this.advance();
   }
 };
