@@ -1,0 +1,9 @@
+/*
+ignore multi line comments
+*/
+
+var string = "Hello world" /*
+multiLineComment
+*/
+
+print string 

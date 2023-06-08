@@ -1,0 +1,27 @@
+{
+  "name": "js-lox",
+  "version": "1.0.0",
+  "description": "An interpreter language written in js",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Unknown-bot-sus/js-lox.git"
+  },
+  "keywords": [
+    "programming",
+    "language"
+  ],
+  "author": "Unknown-bot-sus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Unknown-bot-sus/js-lox/issues"
+  },
+  "homepage": "https://github.com/Unknown-bot-sus/js-lox#readme"
+}

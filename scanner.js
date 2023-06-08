@@ -2,7 +2,7 @@ const Token = require("./token");
 const TokenType = require("./tokenType");
 const Lox = require("./jslox");
 
-module.exports = class Scanner {
+const keywords = (module.exports = class Scanner {
   keywords = {
     and: TokenType.AND,
     class: TokenType.CLASS,
@@ -110,7 +110,10 @@ module.exports = class Scanner {
         this.line++;
         break;
       case '"':
-        this.string();
+        this.string('"');
+        break;
+      case "'":
+        this.string("'");
         break;
       default:
         if (this.isDigit(c)) {
@@ -156,8 +159,8 @@ module.exports = class Scanner {
     this.tokens.push(new Token(type, text, literal, this.line));
   }
 
-  string() {
-    while (this.peek() !== '"' && !this.isAtEnd()) {
+  string(quotation) {
+    while (this.peek() !== quotation && !this.isAtEnd()) {
       if (this.peek() == "\n") line++;
       this.advance();
     }
@@ -238,4 +241,4 @@ module.exports = class Scanner {
     this.advance();
     this.advance();
   }
-};
+});
