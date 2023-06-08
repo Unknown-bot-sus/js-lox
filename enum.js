@@ -1,9 +1,9 @@
-exports.constructEnum = (array) => {
-  const enumTypes = {};
-
-  for (let key of array) {
-    enumTypes[key] = Symbol(key);
+class Enum {
+  constructor(array) {
+    for (let key of array) {
+      this[key] = Symbol(key);
+    }
   }
+}
 
-  return enumTypes;
-};
+module.exports = Enum;

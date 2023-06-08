@@ -1,6 +1,6 @@
-const { constructEnum } = require("./enum");
+const Enum = require("./enum");
 
-const TokenType = constructEnum([
+const TokenType = new Enum([
   // Single-character tokens
   "LEFT_PAREN",
   "RIGHT_PAREN",
